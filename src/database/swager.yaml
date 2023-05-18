@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: Entertainment
+  description: Films API
+  version: 0.1.9
+
+servers:
+  - url: https://entertainment-m02b.onrender.com/api
+    description: render server
+  - url: http://localhost:3005/api
+    description: local server
+
+paths:
+  /Home:
+    get:
+      tags:
+        - home
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /Movies:
+    get:
+      tags:
+        - Movies
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /TvSeries:
+    get:
+      tags:
+        - TvSeries
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
