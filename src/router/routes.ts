@@ -1,11 +1,11 @@
-import { Home } from 'controllers/getMovies'
+import { GetMovies, Home, TvSeries } from 'controllers/getMovies'
 import express from 'express'
-// import { crew, destination, technology } from '../controlers/getData.js'
+
 
 const movieRoute = express.Router()
 
-movieRoute.get('/Movies')
-movieRoute.get('/Home',Home)
-movieRoute.get('/TvSeries')
+movieRoute.get('/Movies', GetMovies)
+movieRoute.get('/Home', Home)
+movieRoute.get('/TvSeries' ,TvSeries)
 
 export default movieRoute
