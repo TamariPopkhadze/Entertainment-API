@@ -5,12 +5,67 @@ info:
   version: 0.1.9
 
 servers:
-  - url: https://movies-doxx.onrender.com/api
-    description: render server
   - url: http://localhost:3005/api
     description: local server
+  - url: https://movies-doxx.onrender.com/api
+    description: render server
+
 
 paths:
+  /verify:
+    post:
+      tags:
+        - Users  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: 'object'
+              properties:
+                  hash: 
+                    type: string
+                  email: 
+                    type: string
+            example:
+              hash: 62dc559d0159b9b549e55f623687d4b50e32738c354a81a0f85b7e1432e9add4e367c8486d2fe8f0a99c56061892a34c
+              email: tatorinio69@gmail.com
+      responses:
+        '201':
+          description: user register successfully
+  /register:
+    post:
+      tags:
+        - Users  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: 'object'
+              properties:
+                  name: 
+                    type: string
+                  password: 
+                    type: string
+                  repeatPassword:
+                    type: string
+                  email:
+                    type: string
+                  redirectLink:
+                    type: string
+                  avatar:
+                    type: string
+            example:
+              name: tato
+              password: paroli12
+              repeatPassword: paroli12
+              email: tatorinio69@gmail.com
+              avatar: your image 
+              redirectLink: link
+      responses:
+        '201':
+          description: user register successfully
   /Home:
     get:
       tags:

@@ -1,11 +1,15 @@
 import { GetMovies, Home, TvSeries } from 'controllers/getMovies'
+import { Reigistration, emailVerification } from 'controllers/registrationUser'
 import express from 'express'
 
 
-const movieRoute = express.Router()
+const Route = express.Router()
 
-movieRoute.get('/Movies', GetMovies)
-movieRoute.get('/Home', Home)
-movieRoute.get('/TvSeries' ,TvSeries)
 
-export default movieRoute
+Route.post('/verify',emailVerification)
+Route.post('/register',Reigistration)
+Route.get('/Movies', GetMovies)
+Route.get('/Home', Home)
+Route.get('/TvSeries' ,TvSeries)
+
+export default Route
