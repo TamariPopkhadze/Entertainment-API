@@ -16,7 +16,7 @@ export const Reigistration = async (req: Request, res: Response) => {
 
   const { value, error } = validator.validate({
     ...body,
-    avatar: file?.originalname,
+    avatar:'https://movies-doxx.onrender.com/users/avatar/' + file?.originalname,
   });
 
   if (error) {
