@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
-// import jwt from "jsonwebtoken";
+
 import { sendEmailConfirmation } from "mail";
 import { createUserSchema } from "schema";
 import { EmailVerification, User } from "models";

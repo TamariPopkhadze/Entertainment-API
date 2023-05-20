@@ -101,7 +101,27 @@ paths:
       responses:
         '200':
           description: password changed!
-
+  /login/name:
+    post:
+      tags:
+        - Users  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: 'object'
+              properties:
+                  name:
+                    type: string
+                  password: 
+                    type: string      
+            example:
+              name: tato
+              password: paroli12
+      responses:
+        '200':
+          description: login successfully!
   /Home:
     get:
       tags:

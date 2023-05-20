@@ -7,6 +7,7 @@ import {
   passwordRecovery,
   passwordRecoverySend,
 } from "controllers";
+import { loginWithName } from "controllers/login-controler";
 import express from "express";
 import multer from "multer";
 const Route = express.Router();
@@ -32,6 +33,9 @@ const fileFilter = (_req:any, file:any, cb:any) => {
   }
 };
 
+
+
+Route.post('/login/name', loginWithName)
 Route.post("/password/recovery", passwordRecovery);
 Route.post("/password/send-link", passwordRecoverySend);
 Route.post("/verify", emailVerification);
