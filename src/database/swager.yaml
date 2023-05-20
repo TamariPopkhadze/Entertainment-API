@@ -5,12 +5,10 @@ info:
   version: 0.1.9
 
 servers:
-  - url: http://localhost:3005/api
-    description: local server
   - url: https://movies-doxx.onrender.com/api
     description: render server
-
-
+  - url: http://localhost:3005/api
+    description: local server
 paths:
   /register:
     post:

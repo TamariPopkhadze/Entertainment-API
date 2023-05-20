@@ -3,14 +3,14 @@ import User from "models/User";
 
 const determineIfUserExists = (name: any) => (value: string, helpers: any) => {
   if (name) {
-    return helpers.message("მომხმარებელი ამ სახელით უკვვე არსებობს");
+    return helpers.message("A user with this name already exists");
   }
   return value;
 };
 const determineIfEmailExists =
   (email: any) => (value: string, helpers: any) => {
     if (email) {
-      return helpers.message("ელ-ფოსტა უკვე გამოყენებულია");
+      return helpers.message("Email is already in use");
     }
     return value;
   };
