@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
-import sendRecoverySchema from "schema/sendRecoverySchema";
 import PasswordRecovery from "models/PasswordRecovery";
 import { sendPasswordRecovery } from "mail";
-import User from "models/User";
-import passwordRecoverySchema from "schema/PasswordRecovery-Schema";
+import { passwordRecoverySchema, sendRecoverySchema } from "schema";
+import { User } from "models";
 
 export const passwordRecoverySend = async (req: Request, res: Response) => {
   const { body } = req;
@@ -51,7 +50,7 @@ export const passwordRecovery = async (req: Request, res: Response) => {
   const passwordRecovery = await PasswordRecovery.findOne({ hash });
 
   if (!passwordRecovery) {
-    return res.status(422).json({ message: "მონაცემები ვერ მოიძებნა" });
+    return res.status(422).json({ message: "No data found" });
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -59,7 +58,7 @@ export const passwordRecovery = async (req: Request, res: Response) => {
   const hashedPassword = await bcrypt.hash(password, salt);
 
   await User.findOneAndUpdate(
-    { id: passwordRecovery.email },
+    { email: passwordRecovery.email },
     { password: hashedPassword }
   );
 

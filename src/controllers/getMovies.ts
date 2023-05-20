@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Movies from "../models/movies.js";
+import { Movies } from "models";
 
 export const Home = async (_req: Request, res: Response) => {
   const data = await Movies.find();

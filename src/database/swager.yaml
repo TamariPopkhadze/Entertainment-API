@@ -19,29 +19,24 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema: 
               type: 'object'
               properties:
                   name: 
                     type: string
+                  email:
+                    type: string
                   password: 
                     type: string
                   repeatPassword:
                     type: string
-                  email:
-                    type: string
+                 
                   redirectLink:
                     type: string
                   avatar:
                     type: string
-            example:
-              name: tato
-              password: paroli12
-              repeatPassword: paroli12
-              email: tatorinio69@gmail.com
-              avatar: your image 
-              redirectLink: link
+                    format: binary
       responses:
         '201':
           description: user register successfully

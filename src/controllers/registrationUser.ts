@@ -2,32 +2,38 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
 // import jwt from "jsonwebtoken";
-import EmailVerification from "models/EmailVerification";
-import createUserSchema from "schema/create-user";
 import { sendEmailConfirmation } from "mail";
-import User from "models/User";
+import { createUserSchema } from "schema";
+import { EmailVerification, User } from "models";
 
 export const Reigistration = async (req: Request, res: Response) => {
-  const { body } = req;
-  const validator = await createUserSchema(body);
+  const { file, body } = req;
 
-  const { value, error } = validator.validate(body);
+  const validator = await createUserSchema({
+    ...body,
+    avatar: 'https://movies-doxx.onrender.com/users/avatar/' + file?.originalname,
+  });
+
+  const { value, error } = validator.validate({
+    ...body,
+    avatar: file?.originalname,
+  });
 
   if (error) {
     return res.status(422).json(error.details);
   }
 
-  const { name, password, email,avatar, redirectLink } = value;
+  const { name, password, email, avatar, redirectLink } = value;
 
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(password, salt)
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
 
   await User.create({
     name,
-    password:hashedPassword,
+    password: hashedPassword,
     email,
     avatar,
-    verify: false
+    verify: false,
   });
 
   const verificationHash = crypto.randomBytes(48).toString("hex");
@@ -41,24 +47,23 @@ export const Reigistration = async (req: Request, res: Response) => {
   return res.status(201).json({ message: "new user create successfully" });
 };
 
+export const emailVerification = async (req: Request, res: Response) => {
+  const { hash } = req.body;
 
-export const emailVerification = async (req: Request, res:Response) => {
-  const { hash } = req.body
+  const emailVerification = await EmailVerification.findOne({ hash });
 
-  const emailVerification = await EmailVerification.findOne({ hash })
-
-  if(!emailVerification){
-      return res.status(422).json({message: 'No data found'})
+  if (!emailVerification) {
+    return res.status(422).json({ message: "No data found" });
   }
 
-  const email = await User.findOne({ email: emailVerification.email})
+  const email = await User.findOne({ email: emailVerification.email });
 
-  if(!email){
-      return res.status(422).json({message: 'No data found'})
+  if (!email) {
+    return res.status(422).json({ message: "No data found" });
   }
-  await User.updateOne({ verify: true})
+  await User.updateOne({ verify: true });
 
-  await EmailVerification.deleteOne({ hash }); 
+  await EmailVerification.deleteOne({ hash });
 
-  return res.json({message: "user verified" })
-}
+  return res.json({ message: "user verified" });
+};

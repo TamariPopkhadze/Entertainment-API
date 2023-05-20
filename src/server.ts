@@ -12,6 +12,7 @@ server.use(bodyParser.json())
 connect()
 server.use(cors())
 server.use("/images", express.static("public/storage"));
+server.use("/users/avatar", express.static("avatar/users"));
 
 server.use('/api',movieRoute)
 
