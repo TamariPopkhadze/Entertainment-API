@@ -12,27 +12,6 @@ servers:
 
 
 paths:
-  /verify:
-    post:
-      tags:
-        - Users  
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: 
-              type: 'object'
-              properties:
-                  hash: 
-                    type: string
-                  email: 
-                    type: string
-            example:
-              hash: 62dc559d0159b9b549e55f623687d4b50e32738c354a81a0f85b7e1432e9add4e367c8486d2fe8f0a99c56061892a34c
-              email: tatorinio69@gmail.com
-      responses:
-        '201':
-          description: user register successfully
   /register:
     post:
       tags:
@@ -66,6 +45,70 @@ paths:
       responses:
         '201':
           description: user register successfully
+  /verify:
+    post:
+      tags:
+        - Users  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: 'object'
+              properties:
+                  hash: 
+                    type: string
+            example:
+              hash: 62dc559d0159b9b549e55f623687d4b50e32738c354a81a0f85b7e1432e9add4e367c8486d2fe8f0a99c56061892a34c
+      responses:
+        '200':
+          description: email verified
+  /password/send-link:
+    post: 
+      tags:
+        - Users  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: 'object'
+              properties:
+                  email:
+                    type: string
+                  redirectLink:
+                    type: string
+            example:
+              email: tatorinio69@gmail.com
+              redirectLink: link
+      responses:
+        '201':
+          description: send password recovery link
+  /password/recovery:
+    post:
+      tags:
+        - Users  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: 'object'
+              properties:
+                  password: 
+                    type: string
+                  repeatPassword:
+                    type: string
+                  hash:
+                    type: string    
+            example:
+              password: paroli1234
+              repeatPassword: paroli1234
+              hash: 45c8866eea81385afa7074306c9e7aed670cbe3c638aefd42ad0689a7b3294e0aa48d44536dd2f2f2fac669480ec41df
+      responses:
+        '200':
+          description: password changed!
+
   /Home:
     get:
       tags:

@@ -48,17 +48,17 @@ export const emailVerification = async (req: Request, res:Response) => {
   const emailVerification = await EmailVerification.findOne({ hash })
 
   if(!emailVerification){
-      return res.status(422).json({message: 'მონაცემები ვერ მოიძებნა'})
+      return res.status(422).json({message: 'No data found'})
   }
 
   const email = await User.findOne({ email: emailVerification.email})
 
   if(!email){
-      return res.status(422).json({message: 'მონაცემები ვერ მოიძებნა'})
+      return res.status(422).json({message: 'No data found'})
   }
   await User.updateOne({ verify: true})
 
   await EmailVerification.deleteOne({ hash }); 
 
-  return res.json({message: "email verified" })
+  return res.json({message: "user verified" })
 }
