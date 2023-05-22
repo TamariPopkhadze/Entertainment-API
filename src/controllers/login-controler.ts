@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { User } from "models";
-import { loginNameSchema } from "schema/allSchema/login-schema";
+import { loginEmailSchema, loginNameSchema } from "schema/allSchema/login-schema";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
@@ -44,7 +44,7 @@ export const loginWithName = async (req: Request, res: Response) => {
 export const loginWithEmail = async (req: Request, res: Response) => {
   const { body } = req;
 
-  const validator = await loginNameSchema(body);
+  const validator = await loginEmailSchema(body);
 
   const { value: data, error } = validator.validate(body);
 
@@ -66,7 +66,7 @@ export const loginWithEmail = async (req: Request, res: Response) => {
 
   if (compare) {
     const signData: any = {
-      name: user?.email || "",
+      email: user?.email || "",
       password: user?.password || "",
     };
     const token = jwt.sign(signData, process.env.JWT_SECRET || "");

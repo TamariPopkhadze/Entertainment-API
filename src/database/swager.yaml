@@ -122,6 +122,27 @@ paths:
       responses:
         '200':
           description: login successfully!
+  /login/email:
+    post:
+      tags:
+        - Users  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: 'object'
+              properties:
+                  email:
+                    type: string
+                  password: 
+                    type: string      
+            example:
+              email: tatorinio69@gmail.com
+              password: paroli12
+      responses:
+        '200':
+          description: login successfully!
   /Home:
     get:
       tags:
