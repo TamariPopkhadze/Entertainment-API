@@ -55,7 +55,6 @@ export const loginWithEmail = async (req: Request, res: Response) => {
   const { email, password } = data;
 
   const user = await User.findOne({ email }).select("+password");
-  console.log('error is not ')
   if (!user?.verify) {
     return res
       .status(401)
@@ -63,7 +62,6 @@ export const loginWithEmail = async (req: Request, res: Response) => {
   }
 
   const compare = await bcrypt.compare(password, user?.password || "");
-
   if (compare) {
     const signData: any = {
       email: user?.email || "",
