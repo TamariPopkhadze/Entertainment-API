@@ -67,10 +67,14 @@ const createUserSchema = async (data: any) => {
       "string.base": "The link must be text",
       "any.required": "Link field should not be empty",
     }),
-    redirectLink: Joi.string().required().messages({
-      "string.base": "The link must be text",
-      "any.required": "Link field should not be empty",
-    }),
+    redirectLink: Joi.string()
+      .uri({ scheme: ["http", "https"] }) 
+      .required()
+      .messages({
+        "string.base": "The link must be text",
+        "string.uri": "The link must be a valid URL",
+        "any.required": "Link field should not be empty",
+      }),
   });
 };
 export default createUserSchema;

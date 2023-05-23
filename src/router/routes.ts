@@ -34,17 +34,17 @@ const fileFilter = (_req:any, file:any, cb:any) => {
   }
 };
 
-
-Route.post('/login/email', loginWithEmail)
-Route.post('/login/name', loginWithName)
-Route.post("/password/recovery", passwordRecovery);
-Route.post("/password/send-link", passwordRecoverySend);
-Route.post("/verify", emailVerification);
 Route.post(
   "/register",
   multer({ storage: fileStorage, fileFilter }).single("avatar"),
   Reigistration
 );
+Route.post('/login/email', loginWithEmail)
+Route.post('/login/name', loginWithName)
+Route.post("/password/recovery", passwordRecovery);
+Route.post("/password/send-link", passwordRecoverySend);
+Route.post("/verify", emailVerification);
+
 Route.get("/Movies", GetMovies);
 Route.get("/Home", Home);
 Route.get("/TvSeries", TvSeries);
