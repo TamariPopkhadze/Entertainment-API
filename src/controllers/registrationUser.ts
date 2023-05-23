@@ -49,7 +49,7 @@ export const Reigistration = async (req: Request, res: Response) => {
 
 export const emailVerification = async (req: Request, res: Response) => {
   const { hash } = req.body;
-
+  
   const emailVerification = await EmailVerification.findOne({ hash });
 
   if (!emailVerification) {
