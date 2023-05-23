@@ -20,7 +20,11 @@ export const Reigistration = async (req: Request, res: Response) => {
   });
 
   if (error) {
-    return res.status(422).json(error.details);
+    const errorField = error.details[0].context?.key;
+
+    const problem = { field: errorField, message: error.details[0].message };
+  
+    return res.status(422).json(problem);
   }
 
   const { name, password, email, avatar, redirectLink } = value;
