@@ -16,7 +16,7 @@ const determineIfEmailExists =
   };
 const createUserSchema = async (data: any) => {
   const name = await User.findOne({ name: data.name });
-  const email = await User.findOne({ name: data.name });
+  const email = await User.findOne({ email: data.email });
 
   return Joi.object({
     name: Joi.string()
