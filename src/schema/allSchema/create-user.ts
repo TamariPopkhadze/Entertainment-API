@@ -36,14 +36,14 @@ const createUserSchema = async (data: any) => {
     password: Joi.string()
       .min(8)
       .max(15)
-      .pattern(/^[a-z0-9]*$/)
+      .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/)
       .required()
       .messages({
         "string.base": "The password must be text",
         "string.min": "The password must consist of at least 3 characters",
         "string.max": "The password must contain a maximum of 15 characters",
         "string.pattern":
-          "The password must contain only lowercase Latin letters and numbers",
+          "The password must contain uppercase, lowercase Latin letters and numbers",
         "any.required": "The password field must not be empty",
       }),
     repeatPassword: Joi.string()
