@@ -38,7 +38,7 @@ export const loginWithName = async (req: Request, res: Response) => {
       password: user?.password || "",
     };
     const token = jwt.sign(signData, process.env.JWT_SECRET || "");
-    return res.json({ token });
+    return res.json({ token ,user });
   }
 
   return res.status(401).json({ message: "The data is incorrect" });
