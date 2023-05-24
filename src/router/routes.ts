@@ -22,7 +22,7 @@ const fileStorage = multer.diskStorage({
   },
 });
 
-const fileFilter = (_req:any, file:any, cb:any) => {
+const fileFilter = (_req: any, file: any, cb: any) => {
   if (
     file.mimetype === "image/png" ||
     file.mimetype === "image/jpg" ||
@@ -39,8 +39,8 @@ Route.post(
   multer({ storage: fileStorage, fileFilter }).single("avatar"),
   Reigistration
 );
-Route.post('/login/email', loginWithEmail)
-Route.post('/login/name', loginWithName)
+Route.post("/login/email", loginWithEmail);
+Route.post("/login/name", loginWithName);
 Route.post("/password/recovery", passwordRecovery);
 Route.post("/password/send-link", passwordRecoverySend);
 Route.post("/verify", emailVerification);

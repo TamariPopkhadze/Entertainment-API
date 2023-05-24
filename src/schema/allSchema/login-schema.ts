@@ -3,7 +3,7 @@ import { User } from "models";
 
 const determineIfUserExists = (user: any) => (value: string, helpers: any) => {
   if (!user) {
-    return helpers.message("The data is incorrect");
+    return helpers.message("There is no user with this name");
   }
 
   return value;
@@ -12,7 +12,7 @@ const determineIfUserExists = (user: any) => (value: string, helpers: any) => {
 const determineIfEmailExists =
   (email: any) => (value: string, helpers: any) => {
     if (!email) {
-      return helpers.message("The data is incorrect");
+      return helpers.message("There is no user with this Email");
     }
 
     return value;

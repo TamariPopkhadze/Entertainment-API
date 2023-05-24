@@ -7,6 +7,7 @@ import { passwordRecoverySchema, sendRecoverySchema } from "schema";
 import { User } from "models";
 
 export const passwordRecoverySend = async (req: Request, res: Response) => {
+
   const { body } = req;
   const validator = await sendRecoverySchema(body);
 

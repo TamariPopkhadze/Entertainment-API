@@ -22,10 +22,14 @@ const sendRecoverySchema = async (data: any) => {
         "string.email": "Does not conform to email format",
         "any.required": "The email field must not be empty",
       }),
-    redirectLink: Joi.string().required().messages({
-      "string.base": "The link must be text",
-      "any.required": "Link field should not be empty",
-    }),
+      redirectLink: Joi.string()
+      .uri({ scheme: ["http", "https"] }) 
+      .required()
+      .messages({
+        "string.base": "The link must be text",
+        "string.uri": "The link must be a valid URL",
+        "any.required": "Link field should not be empty",
+      }),
   });
 };
 

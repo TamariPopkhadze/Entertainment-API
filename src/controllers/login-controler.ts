@@ -14,7 +14,11 @@ export const loginWithName = async (req: Request, res: Response) => {
   const { value: data, error } = validator.validate(body);
 
   if (error) {
-    return res.status(422).json(error.details);
+    const errorField = error.details[0].context?.key;
+
+    const problem = { field: errorField, message: error.details[0].message };
+  
+    return res.status(422).json(problem);
   }
 
   const { name, password } = data;
