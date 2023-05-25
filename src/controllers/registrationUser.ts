@@ -44,7 +44,7 @@ export const Reigistration = async (req: Request, res: Response) => {
 
   await EmailVerification.create({
     hash: verificationHash,
-    email,
+    email:email
   });
   await sendEmailConfirmation(email, verificationHash, name, redirectLink);
 
@@ -59,13 +59,12 @@ export const emailVerification = async (req: Request, res: Response) => {
   if (!emailVerification) {
     return res.status(422).json({ message: "No data found" });
   }
-
-  const email = await User.findOne({ email: emailVerification.email });
-
-  if (!email) {
+  const Email = emailVerification.email
+  const user = await User.findOne({ Email });
+  if (!user) {
     return res.status(422).json({ message: "No data found" });
   }
-  await User.updateOne({ verify: true });
+  await User.findOneAndUpdate({email: Email}, {verify: true})
 
   await EmailVerification.deleteOne({ hash });
 
