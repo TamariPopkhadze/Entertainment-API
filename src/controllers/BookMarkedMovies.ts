@@ -18,7 +18,6 @@ export const addMovieTitle = async (req: Request, res: Response) => {
 export const GetMoviesTitle = async (req: Request, res: Response) => {
   const { name } = req.query;
   const user = await User.findOne({ name });
-  console.log(name);
   if (!user) {
     return res.status(422).json({ message: "No data found" });
   }
