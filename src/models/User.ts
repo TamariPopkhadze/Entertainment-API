@@ -13,15 +13,21 @@ const user = new Schema({
     type: Schema.Types.String,
     required: true,
   },
-  avatar:{
+  avatar: {
     type: Schema.Types.String,
     required: true,
   },
-  verify:{
+  verify: {
     type: Schema.Types.Boolean,
     required: true,
-  }
-
+  },
+  movititle: [
+    {
+      title: {
+        type: Schema.Types.String,
+      },
+    },
+  ],
 });
 
 const User = model("User", user);

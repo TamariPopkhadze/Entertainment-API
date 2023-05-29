@@ -143,6 +143,40 @@ paths:
       responses:
         '200':
           description: login successfully!
+  /BookMark:
+    post:
+      tags:
+        - Users  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: 'object'
+              properties:
+                  title: 
+                    type: string
+                  user: 
+                    type: string
+            example:
+              title: '112'
+              name: tato
+      responses:
+        '200':
+          description: successfully add
+  /getBookmarketTitles:
+    get:
+      tags:
+        - Users
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successfully retrieved bookmark titles
   /Home:
     get:
       tags:
