@@ -9,7 +9,7 @@ import {
   passwordRecovery,
   passwordRecoverySend,
 } from "controllers";
-import { GetMoviesTitle, addMovieTitle } from "controllers/BookMarkedMovies";
+import {  addMovieTitle } from "controllers/BookMarkedMovies";
 import express from "express";
 import multer from "multer";
 const Route = express.Router();
@@ -49,8 +49,6 @@ Route.post("/BookMark", addMovieTitle);
 Route.get("/Movies", GetMovies);
 Route.get("/Home", Home);
 Route.get("/TvSeries", TvSeries);
-Route.get('/getBookmarketTitles',GetMoviesTitle)
-
 
 
 export default Route;

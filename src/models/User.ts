@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, SchemaType, model } from "mongoose";
 
 const user = new Schema({
   name: {
@@ -21,14 +21,9 @@ const user = new Schema({
     type: Schema.Types.Boolean,
     required: true,
   },
-  movititle: {
-    title: [
-      { 
-        type: Schema.Types.String 
-      }
-    ]
-    ,
-  },
+  movititle:[
+      Schema.Types.String
+  ]
 });
 
 const User = model("User", user);

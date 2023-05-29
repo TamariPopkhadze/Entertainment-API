@@ -165,18 +165,44 @@ paths:
         '200':
           description: successfully add
   /getBookmarketTitles:
-    get:
+    post:
       tags:
-        - Users
-      parameters:
-        - in: query
-          name: name
-          schema:
-            type: string
-          required: true
+        - Users  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: 'object'
+              properties:
+                  name: 
+                    type: string
+            example:
+              name: tato
       responses:
         '200':
-          description: Successfully retrieved bookmark titles
+          description: successfully get
+  /chnageBookmarked:
+    post:
+      tags:
+        - Users  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: 'object'
+              properties:
+                  title: 
+                    type: string
+                  name: 
+                    type: string
+            example:
+              title: '112'
+              name : tato
+      responses:
+        '200':
+          description: successfully get
   /Home:
     get:
       tags:
