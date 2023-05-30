@@ -11,6 +11,7 @@ import {
 } from "controllers";
 import {  addMovieTitle } from "controllers/BookMarkedMovies";
 import express from "express";
+import authMiddleware from "middleware/auth-middleware";
 import multer from "multer";
 const Route = express.Router();
 
@@ -45,7 +46,7 @@ Route.post("/login/name", loginWithName);
 Route.post("/password/recovery", passwordRecovery);
 Route.post("/password/send-link", passwordRecoverySend);
 Route.post("/verify", emailVerification);
-Route.post("/BookMark", addMovieTitle);
+Route.post("/BookMark",authMiddleware, addMovieTitle);
 Route.get("/Movies", GetMovies);
 Route.get("/Home", Home);
 Route.get("/TvSeries", TvSeries);
