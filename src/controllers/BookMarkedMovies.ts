@@ -11,9 +11,13 @@ export const addMovieTitle = async (req: Request, res: Response) => {
   if (!movie) {
     return res.status(422).json({ message: "Movie data not found" });
   }
-  
+  const movieIndex = user.movititle.indexOf(title);
 
-  user.movititle.push(title);
+  if (movieIndex === -1) {
+    user.movititle.push(title);
+  } else {
+    user.movititle.splice(movieIndex, 1);
+  }
   await user.save();
 
 
