@@ -5,8 +5,8 @@ info:
   version: 0.1.9
 
 servers:
-  - url: https://movies-doxx.onrender.com/api
-    description: render server
+  - url: https://entertainment-api-production.up.railway.app/api
+    description: Railway Server
   - url: http://localhost:3005/api
     description: local server
 paths:
