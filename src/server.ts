@@ -17,4 +17,4 @@ server.use("/users/avatar", express.static("avatar/users"));
 server.use('/api',movieRoute)
 
 server.use("/", ...swaggerMiddlewares)
-server.listen(3005, () => console.log("Server is listening at http://localhost:3005"))
+server.listen(process.env.PORT ||3005, () => console.log("Server is listening at http://localhost:3005"))
