@@ -11,12 +11,12 @@ export const Reigistration = async (req: Request, res: Response) => {
 
   const validator = await createUserSchema({
     ...body,
-    avatar: 'https://movies-doxx.onrender.com/users/avatar/' + file?.originalname,
+    avatar: 'https://entertainment-api-production.up.railway.app/users/avatar/' + file?.originalname,
   });
 
   const { value, error } = validator.validate({
     ...body,
-    avatar:'https://movies-doxx.onrender.com/users/avatar/' + file?.originalname,
+    avatar:'https://entertainment-api-production.up.railway.app/users/avatar/' + file?.originalname,
   });
 
   if (error) {

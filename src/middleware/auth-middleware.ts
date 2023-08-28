@@ -9,6 +9,7 @@ const authMiddleware = (req:express.Request, res:express.Response, next: NextFun
     const [, token] = authorization.trim().split(' ')
 
     const verified = jwt.verify(token, process.env.JWT_SECRET || '')
+    
     if (verified) {
       next()
     } else {

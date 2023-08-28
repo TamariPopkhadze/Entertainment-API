@@ -11,7 +11,7 @@ const send = (to:string, subject:string, html: any) => {
         to,
         subject,
         html,
-        from: 'tatopirtakhia@gmail.com'
+        from: process.env.GMAIL_USER
     }
 
     return gmailTransport.sendMail(options)
