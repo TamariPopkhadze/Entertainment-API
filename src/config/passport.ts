@@ -1,21 +1,22 @@
 import { Strategy as GoogleStrategy } from "passport-google-oauth2";
-import passport,{Profile} from "passport";
-import { Request } from "express"; 
+import passport, { Profile } from "passport";
+import { Request } from "express";
 import { User } from "models";
 
- const createCredentials = () => {
+const createCredentials = () => {
   passport.use(
     new GoogleStrategy(
       {
         clientID: process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-        callbackURL: "https://entertainment-api-production.up.railway.app/auth/google/callback",
+        callbackURL:
+          "https://entertainment-api-production.up.railway.app/auth/google/callback",
         passReqToCallback: true,
       },
       function (
-        request: Request, 
-        accessToken: string,
-        refreshToken: string,
+        _: Request,
+        __: string,
+        ___: string,
         profile: Profile,
         done: (error: any, user?: any) => void
       ) {
@@ -41,4 +42,4 @@ import { User } from "models";
     }
   });
 };
-export default createCredentials
+export default createCredentials;
