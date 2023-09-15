@@ -6,12 +6,15 @@ const passportRouter = express.Router();
 
 passportRouter.get(
   "/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
+  passport.authenticate("google", { scope: ["profile"] })
 );
 
 passportRouter.get(
   "/google/callback",
-  passport.authenticate("google"),
+  passport.authenticate("google", {
+    successRedirect: process.env.CLIENT_URL,
+    failureRedirect: "/login/failed",
+  }),
   getGoogleAccountInfo
 );
 
