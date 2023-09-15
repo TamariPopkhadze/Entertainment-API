@@ -10,7 +10,7 @@ const createCredentials = () => {
         clientID: process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
         callbackURL:
-          "https://entertainment-api-production.up.railway.app/auth/google/callback",
+          "/auth/google/callback",
         passReqToCallback: true,
       },
       function (
