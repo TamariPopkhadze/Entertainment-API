@@ -32,7 +32,7 @@ passportRouter.get("/logout", (req:Request, res:Response) => {
 passportRouter.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: process.env.CLIENT_URL,
+    successRedirect: 'https://entertainment-omega.vercel.app/home',
     failureRedirect: "/login/failed",
   }),
 );
