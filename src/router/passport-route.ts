@@ -1,4 +1,4 @@
-import { getGoogleAccountInfo } from "controllers/passport-controllers";
+
 import express from "express";
 import passport from "passport";
 import {Response , Request} from 'express'
@@ -35,11 +35,10 @@ passportRouter.get(
     successRedirect: process.env.CLIENT_URL,
     failureRedirect: "/login/failed",
   }),
-  getGoogleAccountInfo
 );
 
 export default passportRouter;
 function next(err: any): void {
-    throw new Error("Function not implemented.");
+    throw new Error(err);
 }
 
