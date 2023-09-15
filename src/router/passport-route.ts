@@ -2,23 +2,22 @@
 import express from "express";
 import passport from "passport";
 import {Response , Request} from 'express'
+import { getGoogleAccountInfo } from "controllers/passport-controllers";
 
 const passportRouter = express.Router();
 
 passportRouter.get(
   "/google",
-  passport.authenticate("google", { scope: ["profile"] })
+  passport.authenticate("google", { scope: ['email',"profile"] })
 );
-passportRouter.get("/login/success", (req, res) => {
-  if (req.user) {
-    res.status(200).json({
-      success: true,
-      message: "successful",
-      user: req.user,
-      //   cookies: req.cookies
+
+passportRouter.get("/login/failed", (_, res) => {
+    res.status(401).json({
+      success: false,
+      message: "failure",
     });
-  }
 });
+  
 passportRouter.get("/logout", (req:Request, res:Response) => {
     req.logout((err) => {
       if (err) {
@@ -31,10 +30,8 @@ passportRouter.get("/logout", (req:Request, res:Response) => {
 
 passportRouter.get(
   "/google/callback",
-  passport.authenticate("google", {
-    successRedirect: 'https://entertainment-omega.vercel.app/home',
-    failureRedirect: "/login/failed",
-  }),
+  passport.authenticate("google",),
+  getGoogleAccountInfo
 );
 
 export default passportRouter;
