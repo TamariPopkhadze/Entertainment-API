@@ -80,15 +80,11 @@ export const loginWithEmail = async (req: Request, res: Response) => {
 
 export const loginWithGoogle = async (req: Request, res: Response) => {
   const { body } = req;
-console.log('1')
   const validator = await loginWithGoogleSchema();
-  console.log('2')
   const { value: data, error } = validator.validate(body);
-  console.log('3')
   if (error) {
     return res.status(422).json(error.details);
   }
-  console.log('4')
   const { name} = data;
 
   const user = await User.findOne({ name })
