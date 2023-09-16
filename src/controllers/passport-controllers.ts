@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import jwt from "jsonwebtoken";
 import { User } from "models";
 
 export const getGoogleAccountInfo = async (req: Request, res: Response) => {
