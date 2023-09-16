@@ -80,3 +80,9 @@ export const loginEmailSchema = async (data: any) => {
       }),
   });
 };
+
+export const loginWithGoogleSchema = async () => {
+  return Joi.object({
+    name: Joi.string(),
+  });
+};

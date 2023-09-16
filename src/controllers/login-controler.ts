@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { User } from "models";
-import { loginEmailSchema, loginNameSchema } from "schema/allSchema/login-schema";
+import { loginEmailSchema, loginNameSchema, loginWithGoogleSchema } from "schema/allSchema/login-schema";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
@@ -76,4 +76,29 @@ export const loginWithEmail = async (req: Request, res: Response) => {
   }
 
   return res.status(401).json({ message: "The data is incorrect" });
+};
+
+export const loginWithGoogle = async (req: Request, res: Response) => {
+  const { body } = req;
+console.log('1')
+  const validator = await loginWithGoogleSchema();
+  console.log('2')
+  const { value: data, error } = validator.validate(body);
+  console.log('3')
+  if (error) {
+    return res.status(422).json(error.details);
+  }
+  console.log('4')
+  const { name} = data;
+
+  const user = await User.findOne({ name })
+
+    const signData: any = {
+      name: user?.name || "",
+    };
+
+    const token = jwt.sign(signData, process.env.JWT_SECRET || "");
+
+    return res.json({ token,user });
+
 };

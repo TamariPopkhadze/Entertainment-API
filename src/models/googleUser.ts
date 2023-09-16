@@ -1,6 +1,10 @@
 import { Schema,  model } from "mongoose";
 
 const googleuser = new Schema({
+  id:{
+    type: Schema.Types.Number,
+    required: true,
+  },
   name: {
     type: Schema.Types.String,
     required: true,

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import GoogleUser from "models/googleUser";
 import jwt from "jsonwebtoken";
+import { User } from "models";
 
 export const getGoogleAccountInfo = async (req: Request, res: Response) => {
   const { user } = req;
@@ -8,22 +8,18 @@ export const getGoogleAccountInfo = async (req: Request, res: Response) => {
   if (user) {
     const { given_name, email, picture } = user;
 
-    const existingUser = await GoogleUser.findOne({ email });
-
+    const existingUser = await User.findOne({ email });
     if (!existingUser){
-      await GoogleUser.create({
+      await User.create({
         name: given_name,
         email: email,
         avatar: picture,
         verify: true,
       });
     }
-    const signData: any = {
-      name: given_name || "",
-    };
-    const token = jwt.sign(signData, process.env.JWT_SECRET || "");
+ 
 
-    const redirectURL = `https://entertainment-omega.vercel.app/home?token=${token}`;
+    const redirectURL = `https://entertainment-omega.vercel.app/home?name=${given_name}`;
 
     return res.redirect(redirectURL);
   }

@@ -5,6 +5,7 @@ import {
   TvSeries,
   emailVerification,
   loginWithEmail,
+  loginWithGoogle,
   loginWithName,
   passwordRecovery,
   passwordRecoverySend,
@@ -41,6 +42,7 @@ Route.post(
   multer({ storage: fileStorage, fileFilter }).single("avatar"),
   Reigistration
 );
+Route.post("/loginWithGoogle", loginWithGoogle);
 Route.post("/login/email", loginWithEmail);
 Route.post("/login/name", loginWithName);
 Route.post("/password/recovery", passwordRecovery);

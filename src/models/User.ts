@@ -1,6 +1,7 @@
 import { Schema,  model } from "mongoose";
 
 const user = new Schema({
+
   name: {
     type: Schema.Types.String,
     required: true,
@@ -11,7 +12,7 @@ const user = new Schema({
   },
   password: {
     type: Schema.Types.String,
-    required: true,
+    required: false,
   },
   avatar: {
     type: Schema.Types.String,
