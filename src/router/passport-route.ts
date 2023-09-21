@@ -30,7 +30,7 @@ passportRouter.get("/logout", (req:Request, res:Response) => {
 
 passportRouter.get(
   "/google/callback",
-  passport.authenticate("google",),
+  passport.authenticate("google"),
   getGoogleAccountInfo
 );
 
