@@ -18,7 +18,7 @@ export const getGoogleAccountInfo = async (req: Request, res: Response) => {
     }
  
 
-    const redirectURL = `https://entertainment-omega.vercel.app/home?name=${given_name}`;
+    const redirectURL = `https://entertainment-ld1a.onrender.com/home?name=${given_name}`;
 
     return res.redirect(redirectURL);
   }
